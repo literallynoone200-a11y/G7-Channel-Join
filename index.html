@@ -11,9 +11,9 @@
         body {
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
-            background-color: #400000;
+            background-color: #400000; 
             background-image: linear-gradient(to bottom, #400000, #660000);
-            overflow: hidden; 
+            overflow-x: hidden; 
             position: relative;
             padding-top: 6rem;
         }
@@ -56,7 +56,8 @@
             <div class="flex items-center space-x-3">
                 <img src="https://i0.wp.com/gkk777.net/wp-content/uploads/2025/05/photo_2024-05-05_18-26-46.jpg?fit=640%2C640&ssl=1" 
                      alt="GKK 99 Logo" 
-                     class="h-10 w-10 rounded-lg border-2 border-yellow-300 object-cover">
+                     class="h-10 w-10 rounded-lg border-2 border-yellow-300 object-cover"
+                     onerror="this.src='https://placehold.co/40x40/ffd700/400000?text=L';">
                 <span class="text-xl font-bold text-yellow-300 hidden sm:inline">GKK777</span>
             </div>
             <button onclick="window.location.href='https://gkk777cta.mssg.me/'"
@@ -69,17 +70,17 @@
     <div class="container mx-auto px-4 w-full max-w-sm md:max-w-md lg:max-w-lg z-10 relative">
         <header class="text-center mb-6">
             <h1 class="text-4xl font-extrabold text-yellow-300 drop-shadow-lg">Congratulations</h1>
-            <p class="text-lg text-white mt-1">
+            <p class="text-lg text-white-200 mt-1">
                 2026 နှစ်သစ် ကံကောင်းခြင်း ငွေသွင်းမလို အခမဲ့ဘောနပ်ကို Channel Join ရရှိသွားသောမန်ဘာများ
             </p>
         </header>
 
-        <div id="list-container" class="bg-[#590000]/70 rounded-xl shadow-2xl backdrop-blur-sm border border-[#660000]/50 overflow-y-auto h-[70vh] w-full">
+        <div id="list-container" class="bg-[#590000]/70 rounded-xl shadow-2xl backdrop-blur-sm border border-[#660000]/50 overflow-hidden overflow-y-auto h-[70vh] w-full">
             <table class="min-w-full divide-y divide-[#660000]">
                 <thead class="bg-[#590000] sticky top-0 z-20 shadow-lg border-b border-yellow-300">
                     <tr>
-                        <th class="player-cell w-1/4 font-extrabold text-sm uppercase tracking-wider text-yellow-300">No</th>
-                        <th class="player-cell w-3/4 font-extrabold text-sm uppercase tracking-wider text-yellow-300">Username</th>
+                        <th scope="col" class="player-cell w-1/4 font-extrabold text-sm uppercase tracking-wider text-yellow-300">No</th>
+                        <th scope="col" class="player-cell w-3/4 font-extrabold text-sm uppercase tracking-wider text-yellow-300">Username</th>
                     </tr>
                 </thead>
                 <tbody id="player-table-body" class="bg-transparent divide-y divide-[#660000]"></tbody>
@@ -90,7 +91,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const tableBody = document.getElementById('player-table-body');
+            const body = document.body;
             const SNOWFLAKE_COUNT = 80;
+            const MAX_PLAYERS = 300;
 
             function maskUsername(username) {
                 if (!username) return "";
@@ -106,7 +109,7 @@
                 }
                 return masked;
             }
-
+            
             function createSnowflake() {
                 const snowflake = document.createElement('div');
                 snowflake.classList.add('snowflake');
@@ -117,7 +120,7 @@
                 snowflake.style.animationDuration = `${Math.random() * 20 + 10}s`;
                 snowflake.style.animationDelay = `-${Math.random() * 15}s`;
                 snowflake.style.top = `${-Math.random() * 100}px`;
-                document.body.appendChild(snowflake);
+                body.appendChild(snowflake);
             }
 
             for (let i = 0; i < SNOWFLAKE_COUNT; i++) { createSnowflake(); }
@@ -129,52 +132,50 @@
                 }
             }
             
-            const updatedUsernames = [
-                "gk09781626552", "gk09671623279", "gk09673341279", "gk09445883586", "gk09673102360",
-                "gk09662348095", "gk09891348863", "gkawwkyuu4", "gk09680513996", "gk09664704510",
-                "gk09943923525", "gk09974977848", "gk09664187040", "gk09424484227", "gk09773606841",
-                "gk09689837635", "gkkyikhin", "gknay717", "gk09769660557", "gk09750253088",
-                "gkyair78", "gk09782286435", "gkmoethiha", "gktalon", "gkwww9294", "gk09791841227",
-                "gk09792752923", "gk09740944438", "gk09668515271", "gk09758984309",
-                "09421834920", "09793847211", "09968234501", "09250394857", "09784561230", "09440938475", "09693847562", "09267384950", "09774859603", "09951234876",
-                "09450392847", "09763847561", "09251827364", "09983746502", "09401928374", "09758473625", "09260192837", "09974837261", "09428374650", "09790192837",
-                "09400293847", "09683746592", "09948573620", "09259384756", "09781234567", "09456789012", "09673829104", "09960293847", "09253847561", "09791029384",
-                "09421928374", "09693847261", "09950293847", "09772837465", "09261029384", "09402938475", "09783746501", "09681928374", "09941029384", "09257384950",
-                "09441928374", "09761029384", "09258374651", "09981029384", "09403928475", "09751029384", "09262039485", "09971029384", "09423948576", "09792039485",
-                "09404928374", "09682039485", "09942039485", "09254837261", "09782039485", "09451029384", "09672039485", "09961029384", "09255847362", "09793049586",
-                "09422039485", "09692039485", "09952039485", "09773049586", "09263049586", "09405948372", "09784059687", "09683049586", "09943049586", "09258473625",
-                "09442039485", "09762039485", "09259483726", "09982039485", "09406958473", "09752039485", "09264059687", "09972039485", "09424059687", "09794059687",
-                "09407968574", "09684059687", "09944059687", "09255948372", "09785069788", "09452039485", "09674059687", "09962039485", "09256958473", "09795069788",
-                "09423049586", "09694059687", "09954059687", "09775069788", "09265069788", "09408978675", "09786079889", "09685069788", "09945069788", "09259584736",
-                "09443049586", "09763049586", "09250596877", "09983049586", "09409989776", "09753049586", "09266079889", "09973049586", "09425069788", "09796079889",
-                "09401122334", "09686079889", "09946079889", "09256079889", "09787089990", "09453049586", "09676079889", "09963049586", "09257089990", "09797089990",
-                "09424059687", "09696079889", "09956079889", "09777089990", "09267089990", "09402233445", "09788091101", "09687089990", "09947089990", "09258091101",
-                "09444059687", "09764059687", "09251122334", "09984059687", "09403344556", "09754059687", "09268091101", "09974059687", "09426079889", "09798091101",
-                "09404455667", "09688091101", "09948091101", "09257192837", "09789102212", "09454059687", "09678091101", "09964059687", "09259102212", "09799102212",
-                "09425069788", "09698091101", "09958091101", "09779102212", "09269102212", "09405566778", "09780113323", "09689102212", "09949102212", "09250213323",
-                "09445069788", "09765069788", "09252233445", "09985069788", "09406677889", "09755069788", "09260113323", "09975069788", "09427089990", "09790113323",
-                "09407788990", "09680113323", "09940113323", "09258294756", "09781224434", "09455069788", "09670113323", "09965069788", "09251224434", "09791224434",
-                "09426079889", "09690113323", "09950113323", "09771224434", "09261224434", "09408899001", "09782335545", "09681224434", "09941224434", "09252335545",
-                "09446079889", "09766079889", "09253344556", "09986079889", "09409900112", "09756079889", "09262335545", "09976079889", "09428091101", "09792335545",
-                "09442039485", "09762039485", "09259483726", "09982039485", "09406958473", "09752039485", "09264059687", "09972039485", "09424059687", "09794059687",
-                "09407968574", "09684059687", "09944059687", "09255948372", "09785069788", "09452039485", "09674059687", "09962039485", "09256958473", "09795069788",
-                "09423049586", "09694059687", "09954059687", "09775069788", "09265069788", "09408978675", "09786079889", "09685069788", "09945069788", "09259584736"
-            ];
+            function generatePlayerList() {
+                // အသစ်ပေးထားသော ID ၃၀ ခု
+                const newIDs = [
+                    "kkzaw123", "09440890670", "sawaear", "09689837635", "09692524239",
+                    "09267458647", "09778581234", "kyikhin", "09668515271", "09891348863",
+                    "09750253088", "09943923525", "09250167624", "nay717", "09774615545",
+                    "yair78", "09773062702", "09740944438", "09442183761", "09261957707",
+                    "09973993898", "09673341279", "09424484227", "09449996270", "09955323114",
+                    "09883262366", "09689986963", "09974977848", "09680513996", "09650795917"
+                ];
 
-            shuffleArray(updatedUsernames); 
-            const fragment = document.createDocumentFragment();
-            const displayLimit = Math.min(updatedUsernames.length, 250); 
+                // နဂိုရှိပြီးသား ID များထဲမှ အချို့
+                const previousIDs = [
+                    "akuma073", "09785163916", "09968380242", "09787054159", "09254510425",
+                    "nayminhtun", "09442002678", "ams17", "09260190305", "09787736669",
+                    "ssmmhh17", "aungmai", "09669622300", "09688488722", "aungmyoswe",
+                    "marlar121", "09660203586", "aung135790", "2173710", "09501384000",
+                    "aungzinmoe", "09671623279", "09400460796", "tsix2025", "aungzin19", 
+                    "kcl2025", "yaykhae7", "09788227225", "09421107699", "09788225225"
+                ];
 
-            for (let i = 0; i < displayLimit; i++) {
-                const row = document.createElement('tr');
-                row.className = "player-row transition duration-150";
-                row.innerHTML = `
-                    <td class="player-cell whitespace-nowrap text-sm font-medium text-yellow-300">${i + 1}</td>
-                    <td class="player-cell whitespace-nowrap text-base font-semibold text-white">${maskUsername(updatedUsernames[i])}</td>
-                `;
-                fragment.appendChild(row);
+                // Generic IDs များ (၃၀၀ ပြည့်ရန်)
+                const genericIDs = [];
+                for(let i=1; i<=240; i++) {
+                    genericIDs.push("09" + Math.floor(Math.random() * 900000000 + 100000000));
+                }
+
+                let finalUsernames = newIDs.concat(previousIDs, genericIDs).slice(0, MAX_PLAYERS);
+                shuffleArray(finalUsernames); 
+
+                const fragment = document.createDocumentFragment();
+                finalUsernames.forEach((name, index) => {
+                    const row = document.createElement('tr');
+                    row.className = "player-row transition duration-150";
+                    row.innerHTML = `
+                        <td class="player-cell whitespace-nowrap text-sm font-medium text-yellow-300">${index + 1}</td>
+                        <td class="player-cell whitespace-nowrap text-base font-semibold text-white">${maskUsername(name)}</td>
+                    `;
+                    fragment.appendChild(row);
+                });
+                tableBody.appendChild(fragment);
             }
-            tableBody.appendChild(fragment);
+
+            generatePlayerList();
         });
     </script>
 </body>
