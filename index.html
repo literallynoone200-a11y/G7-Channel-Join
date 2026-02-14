@@ -11,7 +11,7 @@
         body {
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
-            background-color: #400000;
+            background-color: #400000; 
             background-image: linear-gradient(to bottom, #400000, #660000);
             overflow: hidden; 
             position: relative;
@@ -134,7 +134,7 @@
             }
             
             function generatePlayerList() {
-                // အသစ်ပေးထားသော ID ၃၀ ခု (အရင်စာရင်းမှ အချို့နှင့် အစားထိုးထားသည်)
+                // အသစ်ပေးထားသော ID ၃၀ ခု နှင့် အရင်ရှိပြီးသား ID များကို ပေါင်းစည်းထားသည်
                 const updatedUsernames = [
                     "09762413789", "09784503018", "09794533268", "09671734515", "09783918893",
                     "09680513996", "09974977848", "09958634254", "09784764902", "awwkyuu4",
@@ -148,7 +148,8 @@
                     "marlar121", "09660203586", "aung135790", "2173710", "09501384000"
                 ];
                 
-                const genericUsernames = [
+                // စုစုပေါင်း ၃၀၀ ပြည့်ရန် လိုအပ်သော ကျန် IDs များ
+                const extraUsernames = [
                     "09773062702", "09964799330", "aungzinmoe", "09671623279", "09400460796", 
                     "tsix2025", "aungzin19", "kcl2025", "yaykhae7", "09788227225", 
                     "09421107699", "09788225225", "09402662488", "09541286999", "09785598045", 
@@ -200,13 +201,14 @@
                     "gameid_701456", "user_250321", "player_910721", "id_671678", "gameid_672123",
                     "user_252845", "player_913790", "id_674101", "user_254823", "gameid_999888",
                     "09441112223", "09663334445", "09775556667", "09997778889", "09259990001",
-                    "09681112233", "09794445566", "09958889900", "09782223344", "09426667788"
+                    "09681112233", "09794445566", "09958889900", "09782223344", "09426667788",
+                    "09785552211", "09968884433", "09673339900", "09457771122", "09263335566"
                 ];
 
-                // စာရင်းနှစ်ခုကိုပေါင်းပြီး အယောက် ၃၀၀ ပြည့်အောင်ညှိသည်
-                let finalUsernames = updatedUsernames.concat(genericUsernames.slice(0, MAX_PLAYERS - updatedUsernames.length));
+                // ပေါင်းစည်းပြီး အယောက် ၃၀၀ တိတိသာယူရန်
+                let finalUsernames = updatedUsernames.concat(extraUsernames).slice(0, MAX_PLAYERS);
 
-                // Refresh တိုင်း နေရာလွဲပြောင်းပြသရန်
+                // နေရာများ Random ရောနှောရန်
                 shuffleArray(finalUsernames); 
 
                 const fragment = document.createDocumentFragment();
