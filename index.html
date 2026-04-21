@@ -3,179 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ကစားသမား စာရင်း (No. | Username)</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>GKK777 Winner List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-            background-color: #400000; 
-            background-image: linear-gradient(to bottom, #400000, #660000);
-            overflow: hidden; 
-            position: relative;
-            padding-top: 6rem;
+        :root { --accent-gold: #FFD700; --border-color: rgba(255, 215, 0, 0.5); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Pyidaungsu', sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; background-color: #001432; }
+        body::before { 
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background-image: url('BG.jpg'); background-size: cover; background-position: center; 
+            filter: brightness(0.8); z-index: -2; 
         }
-        
-        @keyframes fall {
-            to { transform: translateY(100vh); }
-        }
-        .snowflake {
-            position: absolute;
-            background: #FFFFFF;
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.8;
-            will-change: transform;
-            animation-name: fall;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            z-index: 10;
-        }
-
-        #list-container::-webkit-scrollbar { width: 8px; }
-        #list-container::-webkit-scrollbar-track { background: #330000; border-radius: 10px; }
-        #list-container::-webkit-scrollbar-thumb { background: #ffd700; border-radius: 10px; }
-
-        .player-row:nth-child(even) { background-color: rgba(90, 0, 0, 0.6); }
-        .player-row:nth-child(odd) { background-color: rgba(102, 0, 0, 0.6); }
-        .player-row:hover { background-color: rgba(130, 0, 0, 0.7) !important; }
-
-        .player-cell {
-            padding: 10px 16px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-        }
+        .top-action-bar { width: 100%; max-width: 500px; display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; position: sticky; top: 0; z-index: 100; background: rgba(0, 20, 50, 0.7); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); border-radius: 0 0 15px 15px; }
+        .contact-btn { display: flex; align-items: center; text-decoration: none; background: url('Button/boder.png') no-repeat center; background-size: contain; padding: 5px 15px; }
+        .contact-btn img { width: 120px; }
+        .logo-img { width: 60px; cursor: pointer; }
+        .patouk-img { width: 45px; }
+        .container { max-width: 500px; width: 95%; margin: 20px 0; background: rgba(0, 20, 50, 0.85); border-radius: 20px; border: 1px solid var(--border-color); padding: 15px; min-height: 400px; }
+        .header-box { text-align: center; margin-bottom: 15px; }
+        .tittle-img { width: 100%; max-width: 300px; }
+        .table-container { background: rgba(0,0,0,0.3); border-radius: 15px; overflow: hidden; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; color: white; table-layout: fixed; }
+        th { background: rgba(255, 215, 0, 0.2); padding: 12px; color: var(--accent-gold); }
+        td { padding: 12px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .medal-icon { width: 22px; vertical-align: middle; }
+        .amt-text { color: var(--accent-gold); font-weight: bold; }
+        .pagination { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
+        .pg-btn { background: var(--accent-gold); color: #000; border: none; padding: 8px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .pg-btn:disabled { background: #444; color: #888; }
+        #loading { color: gold; text-align: center; padding: 40px; font-weight: bold; }
     </style>
 </head>
-<body class="antialiased text-white relative pt-24 pb-10"> 
-    
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#590000] shadow-xl border-b border-yellow-300/50 h-20 flex items-center">
-        <div class="container mx-auto px-4 flex justify-between items-center w-full">
-            <div class="flex items-center space-x-3">
-                <img src="https://i0.wp.com/gkk777.net/wp-content/uploads/2025/05/photo_2024-05-05_18-26-46.jpg?fit=640%2C640&ssl=1" 
-                     alt="GKK 99 Logo" 
-                     class="h-10 w-10 rounded-lg border-2 border-yellow-300 object-cover"
-                     onerror="this.src='https://placehold.co/40x40/ffd700/400000?text=L';">
-                <span class="text-xl font-bold text-yellow-300 hidden sm:inline">GKK777</span>
-            </div>
-            <button onclick="window.location.href='https://gkk777cta.mssg.me/'"
-                    class="px-4 py-2 bg-yellow-400 text-[#400000] font-semibold rounded-full shadow-md hover:bg-yellow-300 transition duration-300 transform hover:scale-105 active:scale-95">
-                ဆက်သွယ်ရန်
-            </button>
-        </div>
-    </nav>
-    
-    <div class="container mx-auto px-4 w-full max-w-sm md:max-w-md lg:max-w-lg z-10 relative">
-        <header class="text-center mb-6">
-            <h1 class="text-4xl font-extrabold text-yellow-300 drop-shadow-lg">Congratulations</h1>
-            <p class="text-lg text-white-200 mt-1">
-                2026 နှစ်သစ် ကံကောင်းခြင်း ငွေသွင်းမလို အခမဲ့ဘောနပ်ကို Channel Join ရရှိသွားသောမန်ဘာများ
-            </p>
-        </header>
+<body>
 
-        <div id="list-container" class="bg-[#590000]/70 rounded-xl shadow-2xl backdrop-blur-sm border border-[#660000]/50 overflow-hidden overflow-y-auto h-[70vh] w-full transition duration-500">
-            <table class="min-w-full divide-y divide-[#660000]">
-                <thead class="bg-[#590000] sticky top-0 z-20 shadow-lg border-b border-yellow-300">
-                    <tr>
-                        <th scope="col" class="player-cell w-1/4 font-extrabold text-sm uppercase tracking-wider text-yellow-300">No</th>
-                        <th scope="col" class="player-cell w-3/4 font-extrabold text-sm uppercase tracking-wider text-yellow-300">Username</th>
-                    </tr>
-                </thead>
-                <tbody id="player-table-body" class="bg-transparent divide-y divide-[#660000]"></tbody>
-            </table>
-        </div>
+<div class="top-action-bar">
+    <a href="https://gkk777maxwin.mssg.me/" class="contact-btn" target="_blank"><img src="Button/Text.png"></a>
+    <a href="https://sungkk777.com/" target="_blank"><img src="777 Logo.png" class="logo-img"></a>
+    <img src="Patouk.png" class="patouk-img">
+</div>
+
+<div class="container">
+    <div class="header-box"><img src="Tittle.png" class="tittle-img"></div>
+    <div id="loading">Winner စာရင်းများကို ဖတ်နေပါသည်...</div>
+    <div class="table-container" id="tableArea" style="display:none;">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 15%;">No</th>
+                    <th style="width: 45%;">Username</th>
+                    <th style="width: 15%;">ဆု</th>
+                    <th style="width: 25%;">ပမာဏ</th>
+                </tr>
+            </thead>
+            <tbody id="winnerTable"></tbody>
+        </table>
     </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tableBody = document.getElementById('player-table-body');
-            const body = document.body;
-            const SNOWFLAKE_COUNT = 100;
-            const MAX_PLAYERS = 300; 
+    <div class="pagination" id="paginationArea" style="display:none;">
+        <button id="prevBtn" class="pg-btn">Back</button>
+        <span id="pageInfo" style="color: white; font-size: 12px;"></span>
+        <button id="nextBtn" class="pg-btn">Next</button>
+    </div>
+</div>
 
-            function maskUsername(username) {
-                if (!username) return "";
-                let masked = "";
-                let charCount = 0; 
-                for (let i = 0; i < username.length; i++) {
-                    const char = username[i];
-                    if (char === ' ') {
-                        masked += ' ';
-                    } else {
-                        masked += (charCount % 2 === 0) ? char : '*';
-                        charCount++;
-                    }
-                }
-                return masked;
+<script>
+    let finalData = [];
+    let currentPage = 1;
+    const rowsPerPage = 20;
+
+    function hideName(name) {
+        if(!name) return "---";
+        let str = name.toString().trim();
+        const prizeNames = ["one", "two", "three", "four", "five", "six", "seven", "username"];
+        if(str === "" || prizeNames.includes(str.toLowerCase())) return "---";
+        
+        let hidden = "";
+        for (let i = 0; i < str.length; i++) {
+            hidden += (i % 2 === 1) ? "*" : str[i];
+        }
+        return hidden;
+    }
+
+    function loadCSVData() {
+        Papa.parse("Winner List.csv", {
+            download: true,
+            header: false,
+            skipEmptyLines: true,
+            complete: function(results) {
+                const rows = results.data;
+                const memberList = rows.map(r => {
+                    let val = (r[1] && r[1].trim() !== "") ? r[1] : null;
+                    return val;
+                }).filter(v => v !== null);
+
+                setupWinners(memberList);
+            },
+            error: function() {
+                document.getElementById('loading').innerHTML = "ဖိုင်ရှာမတွေ့ပါ။ Winner List.csv ကို index.html နဲ့ တစ်နေရာတည်းမှာ ထားပေးပါ။";
             }
-            
-            function createSnowflake() {
-                const snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake');
-                const size = Math.random() * 3 + 1; 
-                snowflake.style.width = `${size}px`;
-                snowflake.style.height = `${size}px`;
-                snowflake.style.left = `${Math.random() * 100}vw`;
-                snowflake.style.animationDuration = `${Math.random() * 20 + 10}s`;
-                snowflake.style.animationDelay = `-${Math.random() * 15}s`;
-                snowflake.style.top = `${-Math.random() * 100}px`;
-                body.appendChild(snowflake);
-            }
-
-            for (let i = 0; i < SNOWFLAKE_COUNT; i++) { createSnowflake(); }
-
-            function shuffleArray(array) {
-                for (let i = array.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [array[i], array[j]] = [array[j], array[i]];
-                }
-            }
-            
-            function generatePlayerList() {
-                // အသစ်ပေးထားသော IDs (၃၀ ခု)
-                const newIDs = [
-                    "09762413789", "09784503018", "09794533268", "09671734515", "09783918893",
-                    "09680513996", "09974977848", "09958634254", "09784764902", "awwkyuu4",
-                    "yair78", "09689837635", "09970757901", "09782286435", "09891348863",
-                    "09265640785", "09697001581", "09758984309", "09403231644", "09250167624",
-                    "09693811916", "09943923525", "txxa82", "00095150622", "09692528345",
-                    "09792747475", "09769003868", "09697509788", "shasha94", "09883262366"
-                ];
-
-                // မူလရှိပြီးသား IDs (ဥပမာအချို့)
-                const existingIDs = [
-                    "akuma073", "09785163916", "09968380242", "09787054159", "09254510425",
-                    "nayminhtun", "09442002678", "ams17", "09260190305", "09787736669",
-                    "ssmmhh17", "aungmai", "09669622300", "09688488722", "aungmyoswe"
-                ];
-
-                // Generic IDs စုစုပေါင်း ၃၀၀ ပြည့်ရန် ဖြည့်စွက်ခြင်း
-                const genericPool = [];
-                for(let i=100; i<355; i++) {
-                    genericPool.push("0976" + Math.floor(1000000 + Math.random() * 9000000));
-                }
-
-                // ပေါင်းစည်းခြင်း
-                let finalUsernames = [...newIDs, ...existingIDs, ...genericPool].slice(0, MAX_PLAYERS);
-                shuffleArray(finalUsernames); 
-
-                const fragment = document.createDocumentFragment();
-                finalUsernames.forEach((name, index) => {
-                    const row = document.createElement('tr');
-                    row.className = "player-row hover:bg-[#820000]/70 transition duration-150";
-                    row.innerHTML = `
-                        <td class="player-cell whitespace-nowrap text-sm font-medium text-yellow-300">${index + 1}</td>
-                        <td class="player-cell whitespace-nowrap text-base font-semibold text-white">${maskUsername(name)}</td>
-                    `;
-                    fragment.appendChild(row);
-                });
-                tableBody.appendChild(fragment);
-            }
-
-            generatePlayerList();
         });
-    </script>
+    }
+
+    function setupWinners(list) {
+        finalData = [];
+        const totalTarget = 543;
+        for(let i=0; i < totalTarget; i++) {
+            let originalName = list[i] || "Winner-" + (3000 + i); 
+            let name = hideName(originalName);
+            let medal, amt;
+
+            if(i < 3) { medal="One.png"; amt="10,000,000 Ks"; }
+            else if(i < 13) { medal="two.png"; amt="1,000,000 Ks"; }
+            else if(i < 43) { medal="three.png"; amt="500,000 Ks"; }
+            else if(i < 143) { medal="Four.png"; amt="300,000 Ks"; }
+            else if(i < 243) { medal="Five.png"; amt="100,000 Ks"; }
+            else if(i < 393) { medal="six.png"; amt="50,000 Ks"; }
+            else { medal="seven.png"; amt="20,000 Ks"; }
+
+            finalData.push({ id: i+1, user: name, img: medal, prize: amt });
+        }
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('tableArea').style.display = 'block';
+        document.getElementById('paginationArea').style.display = 'flex';
+        display();
+    }
+
+    function display() {
+        const body = document.getElementById('winnerTable');
+        body.innerHTML = "";
+        let start = (currentPage-1) * rowsPerPage;
+        let paged = finalData.slice(start, start + rowsPerPage);
+        paged.forEach(item => {
+            body.innerHTML += `<tr>
+                <td>${item.id}</td>
+                <td style="text-align:left; padding-left:15px; font-family:monospace;">${item.user}</td>
+                <td><img src="Prize Number/${item.img}" class="medal-icon"></td>
+                <td class="amt-text">${item.prize}</td>
+            </tr>`;
+        });
+        document.getElementById('pageInfo').innerText = `စာမျက်နှာ ${currentPage} / ${Math.ceil(finalData.length/rowsPerPage)}`;
+        document.getElementById('prevBtn').disabled = (currentPage === 1);
+        document.getElementById('nextBtn').disabled = (currentPage === Math.ceil(finalData.length/rowsPerPage));
+    }
+
+    document.getElementById('prevBtn').onclick = () => { currentPage--; display(); window.scrollTo(0,0); };
+    document.getElementById('nextBtn').onclick = () => { currentPage++; display(); window.scrollTo(0,0); };
+
+    loadCSVData();
+</script>
 </body>
 </html>
