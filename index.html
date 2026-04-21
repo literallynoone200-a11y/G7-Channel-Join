@@ -74,6 +74,7 @@
     function hideName(name) {
         if(!name) return "---";
         let str = name.toString().trim();
+        // Username တွေချည်းပဲ ယူမှာမို့လို့ Prize name တွေကို ဖယ်ထားပါမယ်
         const prizeNames = ["one", "two", "three", "four", "five", "six", "seven", "username"];
         if(str === "" || prizeNames.includes(str.toLowerCase())) return "---";
         
@@ -85,12 +86,14 @@
     }
 
     function loadCSVData() {
+        // ဖိုင်နာမည် အတိအကျ ဖြစ်ရပါမယ်
         Papa.parse("Winner List.csv", {
             download: true,
             header: false,
             skipEmptyLines: true,
             complete: function(results) {
                 const rows = results.data;
+                // သင့် CSV အရ Column B (index 1) မှာ နာမည်တွေ ရှိပါတယ်
                 const memberList = rows.map(r => {
                     let val = (r[1] && r[1].trim() !== "") ? r[1] : null;
                     return val;
@@ -99,7 +102,7 @@
                 setupWinners(memberList);
             },
             error: function() {
-                document.getElementById('loading').innerHTML = "ဖိုင်ရှာမတွေ့ပါ။ Winner List.csv ကို index.html နဲ့ တစ်နေရာတည်းမှာ ထားပေးပါ။";
+                document.getElementById('loading').innerHTML = "ဖိုင်ရှာမတွေ့ပါ။ <br> Winner List.csv ကို index.html နဲ့ တစ်နေရာတည်းမှာ ထားပေးပါ။";
             }
         });
     }
